@@ -88,7 +88,9 @@ function _validateParams($params) {
     }
   }
   if (!isset($params['id']) && CRM_Civirules_BAO_Trigger::triggerExists($params) == TRUE) {
-    return ts('There is already a trigger for this class_name or combination of object_name and op');
+    # disabled: no id == create (vs an update and ::triggerExists says it already exists. 
+    # this is not an error state.
+    #return ts('There is already a trigger for this class_name or combination of object_name and op');
   }
 
   return $errorMessage;
